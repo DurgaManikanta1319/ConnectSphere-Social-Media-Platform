@@ -1,0 +1,442 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-brand-dark text-white font-sans antialiased overflow-x-hidden;
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(168, 85, 247, 0.06) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(6, 182, 212, 0.06) 0px, transparent 50%);
+    background-attachment: fixed;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(168, 85, 247, 0.25);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(168, 85, 247, 0.5);
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+  background: rgba(15, 15, 20, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-panel-hover:hover {
+  background: rgba(22, 22, 28, 0.85);
+  border-color: rgba(168, 85, 247, 0.3);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(168, 85, 247, 0.15);
+}
+
+/* Neon buttons */
+.btn-neon-purple {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);
+}
+
+.btn-neon-purple::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  transition: 0.75s;
+  opacity: 0;
+}
+
+.btn-neon-purple:hover::after {
+  left: 125%;
+  opacity: 1;
+}
+
+.btn-neon-purple:hover {
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
+  transform: translateY(-1px);
+}
+
+.btn-neon-blue {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+}
+
+.btn-neon-blue::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  transition: 0.75s;
+  opacity: 0;
+}
+
+.btn-neon-blue:hover::after {
+  left: 125%;
+  opacity: 1;
+}
+
+.btn-neon-blue:hover {
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.5);
+  transform: translateY(-1px);
+}
+
+/* Skeleton Loading Animation */
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-loading {
+  background: linear-gradient(90deg, #18181c 25%, #2a2a32 50%, #18181c 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s infinite linear;
+}
+
+/* Animated custom gradient background */
+.animated-bg-gradient {
+  background: linear-gradient(270deg, #050507, #0d0914, #05070f, #050507);
+  background-size: 600% 600%;
+  animation: gradientAnimation 16s ease infinite;
+}
+
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50% }
+  50% { background-position: 100% 50% }
+  100% { background-position: 0% 50% }
+}
+
+/* ============================================
+   INSTAGRAM-STYLE TYPING INDICATOR
+   Three dots wave-bounce, staggered timing
+   ============================================ */
+@keyframes ig-typing-dot {
+  0%, 60%, 100% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-6px) scale(1.15);
+    opacity: 1;
+  }
+}
+
+.ig-typing-bubble {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(30, 30, 38, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  padding: 10px 14px;
+  border-radius: 20px 20px 20px 4px;
+  width: fit-content;
+}
+
+.ig-typing-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(168, 85, 247, 0.8);
+  animation: ig-typing-dot 1.4s ease-in-out infinite;
+}
+.typing-animation {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid #a855f7;
+  animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+.ig-typing-dot:nth-child(1) { animation-delay: 0s;    background: #a855f7; }
+.ig-typing-dot:nth-child(2) { animation-delay: 0.18s; background: #7c3aed; }
+.ig-typing-dot:nth-child(3) { animation-delay: 0.36s; background: #06b6d4; }
+
+
+/* ============================================
+   MESSAGE BUBBLE POP-IN
+   New messages scale + fade in from bottom
+   ============================================ */
+@keyframes msg-pop-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.7) translateY(12px);
+  }
+  65% {
+    transform: scale(1.04) translateY(-2px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.msg-bubble-in {
+  animation: msg-pop-in 0.28s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  transform-origin: bottom left;
+}
+
+.msg-bubble-in.outgoing {
+  transform-origin: bottom right;
+}
+
+
+/* ============================================
+   MODAL / BOTTOM SHEET SLIDE-UP
+   Instagram-style sheet pop from bottom
+   ============================================ */
+@keyframes sheet-slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes sheet-fade-in {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.modal-sheet {
+  animation: sheet-slide-up 0.32s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+}
+
+.modal-overlay {
+  animation: sheet-fade-in 0.2s ease forwards;
+}
+
+
+/* ============================================
+   TOAST NOTIFICATION SLIDE-DOWN
+   Instagram-style top alert banner
+   ============================================ */
+@keyframes toast-slide-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-24px) scale(0.95);
+  }
+  60% {
+    transform: translateY(4px) scale(1.01);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes toast-slide-up-out {
+  0%   { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-20px); }
+}
+
+.toast-in  { animation: toast-slide-down  0.38s cubic-bezier(0.34, 1.3, 0.64, 1) forwards; }
+.toast-out { animation: toast-slide-up-out 0.25s ease forwards; }
+
+.toast-banner {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  min-width: 240px;
+  max-width: 360px;
+  background: rgba(20, 20, 26, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  border-radius: 16px;
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45), 0 0 16px rgba(168, 85, 247, 0.1);
+  color: #f1f5f9;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+
+/* ============================================
+   HEART BURST / DOUBLE-TAP LIKE
+   Instagram double-tap heart burst effect
+   ============================================ */
+@keyframes heart-burst {
+  0%   { transform: scale(0) rotate(-15deg); opacity: 1; }
+  40%  { transform: scale(1.35) rotate(5deg); opacity: 1; }
+  70%  { transform: scale(1.1) rotate(-2deg); opacity: 1; }
+  100% { transform: scale(0) rotate(0deg); opacity: 0; }
+}
+
+.heart-burst {
+  position: absolute;
+  pointer-events: none;
+  z-index: 50;
+  font-size: 72px;
+  line-height: 1;
+  animation: heart-burst 0.9s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+}
+
+
+/* ============================================
+   STORY RING PULSE
+   Animated rainbow gradient border on story rings
+   ============================================ */
+@keyframes story-ring-spin {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.story-ring {
+  background: linear-gradient(135deg, #a855f7, #06b6d4, #f59e0b, #ec4899, #a855f7);
+  background-size: 300% 300%;
+  animation: story-ring-spin 3s ease infinite;
+  padding: 2.5px;
+  border-radius: 50%;
+}
+
+.story-ring-inner {
+  border-radius: 50%;
+  border: 2.5px solid #050507;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+
+/* ============================================
+   LIKE BUTTON PULSE
+   Quick scale pop when tapping like
+   ============================================ */
+@keyframes like-pop {
+  0%   { transform: scale(1); }
+  25%  { transform: scale(1.5); }
+  50%  { transform: scale(0.9); }
+  75%  { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.like-pop {
+  animation: like-pop 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+
+/* ============================================
+   FOLLOW BUTTON RIPPLE
+   Ink ripple on button click
+   ============================================ */
+@keyframes ripple-expand {
+  0%   { transform: scale(0); opacity: 0.5; }
+  100% { transform: scale(4); opacity: 0; }
+}
+
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-ripple .ripple {
+  position: absolute;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(0);
+  animation: ripple-expand 0.55s linear;
+  pointer-events: none;
+}
+
+
+/* ============================================
+   FADE SLIDE-UP (Page/Section entry)
+   Generic content entrance animation
+   ============================================ */
+@keyframes fade-slide-up {
+  0%   { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up {
+  animation: fade-slide-up 0.4s ease forwards;
+}
+
+.fade-up-delay-1 { animation-delay: 0.05s; opacity: 0; animation-fill-mode: forwards; animation-name: fade-slide-up; animation-duration: 0.4s; }
+.fade-up-delay-2 { animation-delay: 0.10s; opacity: 0; animation-fill-mode: forwards; animation-name: fade-slide-up; animation-duration: 0.4s; }
+.fade-up-delay-3 { animation-delay: 0.15s; opacity: 0; animation-fill-mode: forwards; animation-name: fade-slide-up; animation-duration: 0.4s; }
+.fade-up-delay-4 { animation-delay: 0.20s; opacity: 0; animation-fill-mode: forwards; animation-name: fade-slide-up; animation-duration: 0.4s; }
+.fade-up-delay-5 { animation-delay: 0.25s; opacity: 0; animation-fill-mode: forwards; animation-name: fade-slide-up; animation-duration: 0.4s; }
+
+
+/* ============================================
+   NOTIFICATION DOT PING
+   Pulsing red/purple dot for unread badges
+   ============================================ */
+@keyframes notif-ping {
+  0%   { transform: scale(1); opacity: 1; }
+  70%  { transform: scale(2.2); opacity: 0; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+.notif-ping::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: inherit;
+  animation: notif-ping 1.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
